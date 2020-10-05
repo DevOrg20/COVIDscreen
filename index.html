@@ -15,26 +15,29 @@
                 var form = document.getElementById('covidForm');
                 var checks = document.getElementsByClassName('q');
                 var hasYes = false;
+                var count = 0;
                 
-                for (var i=0; i<form.elements.length; i++){
-                    if(form.elements[i].value === '' && form.elements[i].hasAttribute('required')){
-                        alert('All fields are required!');
-                        return false;
+                for (var i=0; i<checks.length; i++){
+                    if(checks[i].checked){
+                        count++;
                     }
-                }
-                
-                for (var i=0; i<checks.length;i++) {
                     if(checks[i].checked && checks[i].value == 'Yes'){
                         hasYes = true;
                     }
-                    
                 }
+                
+                if (count != 10 || document.getElementById('00N1Y00000InPK1').value == '' || document.getElementById('00N1Y00000InPK6').value == ''){
+                    alert('All fields are required!');
+                    return false;
+                }
+                
                 if(hasYes == true){
-                    console.log(hasYes);
-                    document.getElementById('theURL').value = 'https://devorg20.github.io/COVIDscreen/COVIDthankyou.html?view=h'
+                    document.getElementById('theURL').value = 'http://127.0.0.1:5500/gbCOVIDthankyou.html?view=h';
+                    form.submit();
+                } else {
+                    form.submit();
                 }
-                form.submit();
-
+                
             }
 
 
@@ -133,7 +136,7 @@
         <div style="display:flex;width:100%;justify-content:center;">
             <form  action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST" name="covid" id="covidForm">
                 <input type=hidden name="orgid" value="00Di0000000XoKP">
-                <input type=hidden name="retURL" value="https://devorg20.github.io/COVIDscreen/COVIDthankyou.html" id="theURL">
+                <input type=hidden name="retURL" value="http://127.0.0.1:5500/gbCOVIDthankyou.html" id="theURL">
                 <input type="hidden" id="status" name="status" value="Closed">
                 <input type="hidden" id="subject" name="subject" value="COVID" />
                 <div id="questionnaire">
@@ -266,8 +269,8 @@
                         <div style="padding-top: 20px;text-align:center">
                             <hr>
                             <div style="padding-top: 20px;">
-                                <input type="text" name="00N1Y00000InPK1" placeholder="First Name" required>
-                                <input type="text" name="00N1Y00000InPK6" placeholder="Last Name" required>
+                                <input type="text" name="00N1Y00000InPK1" placeholder="First Name"  id="00N1Y00000InPK1" required>
+                                <input type="text" name="00N1Y00000InPK6" placeholder="Last Name" id="00N1Y00000InPK6" required>
                                 <br/><br/>
                                 <input type="text" name="00N1Y00000InPKB" id="subDate" disabled>
                             </div>
