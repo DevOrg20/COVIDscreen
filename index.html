@@ -1,0 +1,285 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            window.onload = function(){
+                var today = new Date();
+                var day = String(today.getDate());
+                var month = String(today.getMonth() + 1);
+                var year = today.getFullYear();
+                today = month + '/' + day + '/' + year;
+                document.getElementById('subDate').value = today;
+            };
+
+            function submitForm() {
+                var form = document.getElementById('covidForm');
+                var checks = document.getElementsByClassName('q');
+                var hasYes = false;
+                
+                for (var i=0; i<form.elements.length; i++){
+                    if(form.elements[i].value === '' && form.elements[i].hasAttribute('required')){
+                        alert('All fields are required!');
+                        return false;
+                    }
+                }
+                
+                for (var i=0; i<checks.length;i++) {
+                    if(checks[i].checked && checks[i].value == 'Yes'){
+                        hasYes = true;
+                    }
+                    
+                }
+                if(hasYes == true){
+                    console.log(hasYes);
+                    document.getElementById('theURL').value = 'http://127.0.0.1:5500/gbCOVIDthankyou.html?view=h'
+                }
+                form.submit();
+
+            }
+
+
+        </script>
+        <style>
+            #questionnaire {
+                background-color:#ffffff;
+                max-width:700px;
+                border: 1px solid rgba(77, 80, 85, 0.1);
+                border-radius:8px;
+                box-shadow:0 1px 8px 0 rgba(0, 0, 0, 0.08);
+                padding:30px 40px 20px 40px;
+                color:#4d5055;
+                margin:20px;
+            }
+
+            #questionnaire label {
+                display: inline-block;
+                background-color: #ffffff;
+                padding-top:6px;
+                border: 2px solid #1A4E55;
+                color: #1A4E55;
+                min-width: 100px;
+                height:25px;
+                text-align: center;
+                font-size: 1em;
+                font-weight:bold;
+                margin-right: 15px;
+                border-radius:5px;
+            }
+            
+            #questionnaire label:hover {
+                background-color: #1A4E55;
+                border-color: #1A4E55;
+                color: #ffffff;
+            }
+
+            #questionnaire input[type="radio"]:checked + label {
+                background-color: #1A4E55;
+                border-color: #1A4E55;
+                color: #ffffff;
+            }
+    
+            #questionnaire p {
+                font-size: 1.1em;
+                padding-left:15px;
+            }
+
+            .answer-container{
+                display: flex;
+                align-items:center;
+                flex-wrap:wrap;
+            }
+
+            .answer{
+                display: flex;
+                width:360px;
+            }
+
+            .radio-container{
+                display:flex;
+                padding-left:20px;
+            }
+
+            .q {
+                opacity: 0;
+                /* position: fixed; */
+                width:1;
+            }
+
+            #questionnaire input[type=button] {
+                font-family: 'Proxima Nova', sans-serif;
+                width: 100%;
+                background-color: #0D5C63;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size:1.2em;
+            }
+            
+            #questionnaire input[type="text"] {
+                margin: 0px 15px 10px 0px;
+                width: 200px;
+                font-size: 1em;
+                font-family: 'Proxima Nova', sans-serif;
+                padding:7px;
+                border-radius: 3px;
+                border: 1px solid #1A4E55;
+            }
+        </style>
+    </head>
+    <body style="background-color: #fbfcfd;font-family:'Proxima Nova', sans-serif">
+        <div style="display:flex;width:100%;justify-content:center;">
+            <form  action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST" name="covid" id="covidForm">
+                <input type=hidden name="orgid" value="00Di0000000XoKP">
+                <input type=hidden name="retURL" value="http://127.0.0.1:5500/gbCOVIDthankyou.html" id="theURL">
+                <input type="hidden" id="status" name="status" value="Closed">
+                <input type="hidden" id="subject" name="subject" value="COVID" />
+                <div id="questionnaire">
+                    <div style="text-align:center;margin-bottom:30px;">
+                        <span style="font-size:1.3em;font-weight:bold">Greybrook COVID-19 Screening Questionnaire</span><br/><br/>
+                        <span style="font-size:16px;">This questionnaire is required each day you enter the Greybrook workplace.</span>
+                        <br/><br/><hr>
+                    </div>
+                    <div id="questions"> 
+                        <div style="margin-bottom: 20px;">
+                            <span style="font-size:1.1em;font-weight:bold">1) Do you have any of the following new or worsening symptoms or signs?</span> <br/>
+                            <span style="font-size:0.8em;padding-left:22px;">Symptoms should not be chronic or related to other known causes or conditions</span>
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Fever or Chills</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a1" value="Yes" name="00N1Y00000InPJD"/>
+                                <label for="a1">Yes</label>
+                                <input class="q" type="radio" id="a2" value="No" name="00N1Y00000InPJD" required/>
+                                <label for="a2">No</label>
+                            </div>
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Difficulty breathing or shortness of breath some more text goes here for wrapping</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a3" value="Yes" name="00N1Y00000InPJI"/>
+                                <label for="a3">Yes</label>
+                                <input class="q" type="radio" id="a4" value="No" name="00N1Y00000InPJI" required/>
+                                <label for="a4">No</label>
+                            </div >
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Cough</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a5" value="Yes" name="00N1Y00000InPJN"/>
+                                <label for="a5">Yes</label>
+                                <input class="q" type="radio" id="a6" value="No" name="00N1Y00000InPJN" required/>
+                                <label for="a6">No</label>
+                            </div >
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Sore throat, trouble swallowing</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a7" value="Yes" name="00N1Y00000InPJS"/>
+                                <label for="a7">Yes</label>
+                                <input class="q" type="radio" id="a8" value="No" name="00N1Y00000InPJS" required/>
+                                <label for="a8">No</label>
+                            </div >
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Runny nose/stuffy nose or nasal congestion</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a9" value="Yes" name="00N1Y00000InPJX"/>
+                                <label for="a9">Yes</label>
+                                <input class="q" type="radio" id="a10" value="No" name="00N1Y00000InPJX" required/>
+                                <label for="a10">No</label>
+                            </div >
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Decrease or loss of smell or taste</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a11" value="Yes" name="00N1Y00000InPJc"/>
+                                <label for="a11">Yes</label>
+                                <input class="q" type="radio" id="a12" value="No" name="00N1Y00000InPJc" required/>
+                                <label for="a12">No</label>
+                            </div >
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Nausea, vomiting, diarrhea, abdominal pain</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a13" value="Yes" name="00N1Y00000InPJh"/>
+                                <label for="a13">Yes</label>
+                                <input class="q" type="radio" id="a14" value="No" name="00N1Y00000InPJh" required/>
+                                <label for="a14">No</label>
+                            </div >
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <p>Not feeling well, extreme tiredness, sore muscles</p>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a15" value="Yes" name="00N1Y00000InPJm"/>
+                                <label for="a15">Yes</label>
+                                <input class="q" type="radio" id="a16" value="No" name="00N1Y00000InPJm" required/>
+                                <label for="a16">No</label>
+                            </div >
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            &nbsp;
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <span style="font-size:1.1em;font-weight:bold">2) Have you travelled outside of Canada in the past 14 days?</span>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a17" value="Yes" name="00N1Y00000InPJr"/>
+                                <label for="a17">Yes</label>
+                                <input class="q" type="radio" id="a18" value="No" name="00N1Y00000InPJr" required/>
+                                <label for="a18">No</label>
+                            </div >
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            &nbsp;
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <span style="font-size:1.1em;font-weight:bold">3) Have you had close contact with a confirmed or probable case of COVID-19?</span>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a19" value="Yes" name="00N1Y00000InPJw"/>
+                                <label for="a19">Yes</label>
+                                <input class="q" type="radio" id="a20" value="No" name="00N1Y00000InPJw" required/>
+                                <label for="a20">No</label>
+                            </div >
+                        </div>
+                        <div style="padding-top: 20px;text-align:center">
+                            <hr>
+                            <div style="padding-top: 20px;">
+                                <input type="text" name="00N1Y00000InPK1" placeholder="First Name" required>
+                                <input type="text" name="00N1Y00000InPK6" placeholder="Last Name" required>
+                                <br/><br/>
+                                <input type="text" name="00N1Y00000InPKB" id="subDate" disabled>
+                            </div>
+                            <div style="padding-top: 15px;max-width:620px;">By clicking SUBMIT, I agree that the above information is accurate and complete to the best of my knowledge.</div>
+                        </div>
+                        <div id="button" style="padding: 30px 80px 10px 80px">
+                            <input onclick="submitForm()" type="button" value="Submit">
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
