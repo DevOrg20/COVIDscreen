@@ -40,7 +40,14 @@
                 
             }
 
-
+            function selectAll(){
+                for (var i=1; i<20; i++){
+                    i = i + 1;
+                    var id = 'a' + i;
+                    document.getElementById(id).checked = true;
+                    //console.log(i);
+                }
+            }
         </script>
         <style>
             #questionnaire {
@@ -108,7 +115,7 @@
                 width:1;
             }
 
-            #questionnaire input[type=button] {
+            .submit {
                 font-family: 'Proxima Nova', sans-serif;
                 background-color: #0D5C63;
                 color: #ffffff;
@@ -118,6 +125,18 @@
                 border-radius: 5px;
                 cursor: pointer;
                 font-size:1.2em;
+            }
+            
+            .btn {
+                font-family: 'Proxima Nova', sans-serif;
+                background-color: #0D5C63;
+                color: #ffffff;
+                padding: 8px 15px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size:1em;
             }
             
             #questionnaire input[type="text"] {
@@ -256,13 +275,24 @@
                         </div>
                         <div class="answer-container">
                             <div class="answer">
-                                <span style="font-size:1.1em;font-weight:bold">3) Have you had close contact with a confirmed or probable case of COVID-19?</span>
+                                <span style="font-size:1.1em;font-weight:bold">3) Have you had close contact with a confirmed or probable case of COVID-19? <br><span style="font-size:0.8em;font-weight: normal">(without the use of proper PPE)</span></span>
                             </div>
                             <div class="radio-container">
                                 <input class="q" type="radio" id="a19" value="Yes" name="00N1Y00000InPJw"/>
                                 <label for="a19">Yes</label>
                                 <input class="q" type="radio" id="a20" value="No" name="00N1Y00000InPJw" required/>
                                 <label for="a20">No</label>
+                            </div >
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <span style="font-size:1.1em;font-weight:bold">&nbsp;</span>
+                            </div>
+                            <div class="radio-container">
+                                <div style="width:250px;padding-top: 15px;text-align:center;">
+                                    <input type="button" value="No to All" class="btn" onclick=(selectAll())>
+                                </div>
+                                
                             </div >
                         </div>
                         <div style="padding-top: 20px;text-align:center">
@@ -276,7 +306,7 @@
                             <div style="padding-top: 15px;max-width:620px;">By clicking SUBMIT, I agree that the above information is accurate and complete to the best of my knowledge.</div>
                         </div>
                         <div id="button" style="padding: 30px 0px 10px 0px;text-align: center">
-                            <input onclick="submitForm()" type="button" value="Submit">
+                            <input onclick="submitForm()" type="button" value="Submit" class="submit">
                         </div>
                     </div>
                     
