@@ -10,9 +10,15 @@
                 
                 if (paramValue == 'h'){
                     document.getElementById('goHome').style.display = 'block';
+                    document.getElementById('callManager').style.display = 'none';
+                    document.getElementById('thanks').style.display = 'none';
+                } else if (paramValue == 'w') {
+                    document.getElementById('goHome').style.display = 'none';
+                    document.getElementById('callManager').style.display = 'block';
                     document.getElementById('thanks').style.display = 'none';
                 } else {
                     document.getElementById('goHome').style.display = 'none';
+                    document.getElementById('callManager').style.display = 'none';
                     document.getElementById('thanks').style.display = 'block';
                 }
                     
@@ -65,8 +71,14 @@
                         <spam style="font-size: 1em;"> You should self-isolate immediately, complete the <a href="https://covid-19.ontario.ca/self-assessment/severe-symptoms" trget="_self">Ontario COVID-19 Screening Assessment</a> and call Telehealth Ontario (1.866.797.0000) to find out if you need a COVID-19 test.</spam>
                     </div>
                 </div>
+                <div id="callManager" style="display: none;text-align: center;padding-top:20px;">
+                    <img src="https://ik.imagekit.io/di9pjrbwnq/warning-sign_9V8HLz-ryGF.jpg?updatedAt=1633367952913" alt="warning">
+                    <div style="padding: 20px 0px;">
+                        <spam style="font-size: 1em;"> If you have been in contact with a confirmed positive COVID-19 case, please review the <a href="https://www.toronto.ca/home/covid-19/covid-19-what-you-should-do/covid-19-what-to-do-if-you-are-a-close-contact/" trget="_self">City of Toronto public health guidelines</a> to determine you next course of action and notify your manager immediately to confirm your next action (e.g., ability to return to the office or work remotely).</spam>
+                    </div>
+                </div>
                 <div id="thanks" style="display: none;text-align:center;padding-top:20px;">
-                    <img src="https://ik.imagekit.io/di9pjrbwnq/go_eHGwXosInM.png" alt="stop">
+                    <img src="https://ik.imagekit.io/di9pjrbwnq/go_eHGwXosInM.png" alt="go">
                     <div style="padding: 20px 0px;">
                         <spam style="font-size: 1.2em;font-weight:bold">You are permitted to enter the Greybrook workplace</spam> 
                         <br><br>
