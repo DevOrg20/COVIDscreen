@@ -8,13 +8,15 @@
                 var month = String(today.getMonth() + 1);
                 var year = today.getFullYear();
                 today = month + '/' + day + '/' + year;
-                document.getElementById('subDate').value = today;
+                document.getElementById('subDate').value = today;                
             };
 
             function submitForm() {
                 var form = document.getElementById('covidForm');
                 var checks = document.getElementsByClassName('q');
+                var lastQuestion = document.getElementById('a19');
                 var hasYes = false;
+                var hasYesQ3 = false;
                 var count = 0;
                 
                 for (var i=0; i<checks.length; i++){
@@ -25,14 +27,21 @@
                         hasYes = true;
                     }
                 }
-                
-                if (count != 10 || document.getElementById('00N1Y00000InPK1').value == '' || document.getElementById('00N1Y00000InPK6').value == ''){
+
+                if (lastQuestion.checked) {
+                    hasYesQ3 = true;
+                }
+
+                if (count != 9 || document.getElementById('00N1Y00000InPK1').value == '' || document.getElementById('00N1Y00000InPK6').value == '' || (document.getElementById('a19').checked == false && document.getElementById('a20').checked == false)){
                     alert('All fields are required!');
                     return false;
                 }
                 
                 if(hasYes == true){
                     document.getElementById('theURL').value = 'https://devorg20.github.io/COVIDscreen/COVIDthankyou.html?view=h';
+                    form.submit();
+                } else if(hasYesQ3 == true) {
+                    document.getElementById('theURL').value = 'https://devorg20.github.io/COVIDscreen/COVIDthankyou.html?view=w';
                     form.submit();
                 } else {
                     form.submit();
@@ -114,7 +123,11 @@
                 /* position: fixed; */
                 width:1;
             }
-
+            .q3 {
+                opacity: 0;
+                /* position: fixed; */
+                width:1;
+            }
             .submit {
                 font-family: 'Proxima Nova', sans-serif;
                 background-color: #0D5C63;
@@ -283,9 +296,9 @@
                                 <span style="font-size:1.1em;font-weight:bold">3) In the last 14 days, have you come in close contact with someone who has a confirmed or probable case of COVID-19? <span style="font-size:0.8em;font-weight: normal">(without the use of proper PPE)</span></span>
                             </div>
                             <div class="radio-container">
-                                <input class="q" type="radio" id="a19" value="Yes" name="00N1Y00000InPJw"/>
+                                <input class="q3" type="radio" id="a19" value="Yes" name="00N1Y00000InPJw"/>
                                 <label for="a19">Yes</label>
-                                <input class="q" type="radio" id="a20" value="No" name="00N1Y00000InPJw" required/>
+                                <input class="q3" type="radio" id="a20" value="No" name="00N1Y00000InPJw" required/>
                                 <label for="a20">No</label>
                             </div >
                         </div>
