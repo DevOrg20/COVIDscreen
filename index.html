@@ -14,9 +14,9 @@
             function submitForm() {
                 var form = document.getElementById('covidForm');
                 var checks = document.getElementsByClassName('q');
-                var lastQuestion = document.getElementById('a19');
+                //var lastQuestion = document.getElementById('a19');
                 var hasYes = false;
-                var hasYesQ3 = false;
+                //var hasYesQ3 = false;
                 var count = 0;
                 
                 for (var i=0; i<checks.length; i++){
@@ -27,34 +27,40 @@
                         hasYes = true;
                     }
                 }
-
+                
+                /*
                 if (lastQuestion.checked) {
                     hasYesQ3 = true;
                 }
-
-                if (count != 9 || document.getElementById('00N1Y00000InPK1').value == '' || document.getElementById('00N1Y00000InPK6').value == '' || (document.getElementById('a19').checked == false && document.getElementById('a20').checked == false)){
+                */
+                if (count != 12 || document.getElementById('00N1Y00000InPK1').value == '' || document.getElementById('00N1Y00000InPK6').value == ''){
                     alert('All fields are required!');
                     return false;
                 }
                 
                 if(hasYes == true){
                     document.getElementById('theURL').value = 'https://devorg20.github.io/COVIDscreen/COVIDthankyou.html?view=h';
-                    form.submit();
-                } else if(hasYesQ3 == true) {
-                    document.getElementById('theURL').value = 'https://devorg20.github.io/COVIDscreen/COVIDthankyou.html?view=w';
+                    
                     form.submit();
                 } else {
                     form.submit();
                 }
+                /* 
+                else if(hasYesQ3 == true) {
+                    document.getElementById('theURL').value = 'https://devorg20.github.io/COVIDscreen/COVIDthankyou.html?view=w';
+                    form.submit();
+                } 
+                */
+                
                 
             }
 
             function selectAll(){
-                for (var i=1; i<20; i++){
+                for (var i=1; i<24; i++){
                     i++;
                     var id = 'a' + i;
                     document.getElementById(id).checked = true;
-                    //console.log(i);
+                    console.log(id);
                 }
             }
         </script>
@@ -98,7 +104,7 @@
             }
     
             #questionnaire p {
-                font-size: 1.1em;
+                font-size: 1em;
                 padding-left:15px;
             }
 
@@ -109,7 +115,7 @@
             }
 
             .answer{
-                display: flex;
+                display: block;
                 width:360px;
             }
 
@@ -180,7 +186,7 @@
                     </div>
                     <div id="questions"> 
                         <div style="margin-bottom: 20px;">
-                            <span style="font-size:1.1em;font-weight:bold">1) Do you have any of the following new or worsening symptoms or signs?</span> <br/>
+                            <span style="font-size:1em;font-weight:bold">1) Do you have any of the following new or worsening symptoms or signs?</span> <br/>
                             <span style="font-size:0.8em;padding-left:22px;">Symptoms should not be chronic or related to other known causes or conditions</span>
                         </div>
                         <div class="answer-container">
@@ -276,15 +282,12 @@
                         </div>
                         <div class="answer-container">
                             <div class="answer">
-                                <span style="font-size:1.1em;font-weight:bold">2) Have you or a household member travelled outside of Canada in the past 14 days and are required to quarantine under Canada’s requirements for fully vaccinated travellers? If you meet all the entry requirements and are fully vaccinated, you are exempt from quarantine.
-                                    <br>
-                                    <span style="font-size:0.8em;font-weight:normal;">Please refer to the <a href="https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection/awareness-resources/fully-vaccinated-travellers-covid-19.html">Government of Canada</a> website for more information.</span>
-                                </span>    
+                                <span style="font-size:1em;font-weight:bold">2) In the past 5 days, have you tested positive on a rapid antigen test or home-based self-testing kit?</span>    
                             </div>
                             <div class="radio-container">
-                                <input class="q" type="radio" id="a17" value="Yes" name="00N1Y00000InPJr"/>
+                                <input class="q" type="radio" id="a17" value="Yes" name="00N5d00000J8yai"/>
                                 <label for="a17">Yes</label>
-                                <input class="q" type="radio" id="a18" value="No" name="00N1Y00000InPJr" required/>
+                                <input class="q" type="radio" id="a18" value="No" name="00N5d00000J8yai" required/>
                                 <label for="a18">No</label>
                             </div >
                         </div>
@@ -293,13 +296,46 @@
                         </div>
                         <div class="answer-container">
                             <div class="answer">
-                                <span style="font-size:1.1em;font-weight:bold">3) In the last 14 days, have you come in close contact with someone who has a confirmed or probable case of COVID-19? <span style="font-size:0.8em;font-weight: normal">(without the use of proper PPE)</span></span>
+                                <span style="font-size:1em;font-weight:bold">3) In the past 5 days, has someone you live with:</span> <br/>
+                                <span style="font-size:1em;">a. Been sick with symptoms associated with COVID-19? <br/>and/or <br/>b. Tested positive for COVID-19 (on a rapid antigen test or PCR test)?</span>    
                             </div>
                             <div class="radio-container">
-                                <input class="q3" type="radio" id="a19" value="Yes" name="00N1Y00000InPJw"/>
+                                <input class="q" type="radio" id="a19" value="Yes" name="00N5d00000J8yan"/>
                                 <label for="a19">Yes</label>
-                                <input class="q3" type="radio" id="a20" value="No" name="00N1Y00000InPJw" required/>
+                                <input class="q" type="radio" id="a20" value="No" name="00N5d00000J8yan" required/>
                                 <label for="a20">No</label>
+                            </div >
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            &nbsp;
+                        </div>
+                        
+                        <div class="answer-container">
+                            <div class="answer">
+                                <span style="font-size:1em;font-weight:bold">4) In the past 5 days, have you been identified as a “close contact” of someone who currently has COVID-19 (confirmed by PCR or rapid antigen test)? </span>
+                                <br/>
+                                <span style="font-size:0.8em;">If public health has advised you that you do not need to self-isolate, select “No”</span>    
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a21" value="Yes" name="00N1Y00000InPJw"/>
+                                <label for="a21">Yes</label>
+                                <input class="q" type="radio" id="a22" value="No" name="00N1Y00000InPJw" required/>
+                                <label for="a22">No</label>
+                            </div >
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            &nbsp;
+                        </div>
+                        <div class="answer-container">
+                            <div class="answer">
+                                <span style="font-size:1em;font-weight:bold">5) In the last 14 days, Have you or a household member travelled outside of Canada?</span><br/><br/>
+                                <span style="font-size:.9em;">If exempt from federal quarantine requirements as directed by the border agent at your point of entry (for example, you have two or more doses of a COVID-19 vaccine and have met the specific conditions, or an essential worker who crosses the Canada-US border regularly for work), select “No.”</span>
+                            </div>
+                            <div class="radio-container">
+                                <input class="q" type="radio" id="a23" value="Yes" name="00N1Y00000InPJr"/>
+                                <label for="a23">Yes</label>
+                                <input class="q" type="radio" id="a24" value="No" name="00N1Y00000InPJr" required/>
+                                <label for="a24">No</label>
                             </div >
                         </div>
                         <div class="answer-container">
